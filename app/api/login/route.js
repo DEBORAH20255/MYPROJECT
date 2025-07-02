@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import redis from "../../../redis-client.js"; // ✅ Default import
+import redis from "../../redis-client.js";
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;

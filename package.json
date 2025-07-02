@@ -1,26 +1,13 @@
 {
-  "name": "nextjs-redis-app",
+  "name": "vercel-redis-app",
   "version": "1.0.0",
-  "private": true,
-  "type": "module",
+  "description": "Vercel app with Redis and API routes",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "vercel dev"
   },
   "dependencies": {
-    "ioredis": "^5.3.2",
-    "next": "^14.2.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "uuid": "^9.0.1",
-    "@upstash/redis": "^1.30.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.3",
-    "rimraf": "^5.0.5",
-    "glob": "^10.3.10"
+    "@upstash/redis": "^1.22.0",
+    "uuid": "^9.0.0"
   }
 }

@@ -1,4 +1,4 @@
-import redis from "../../../redis-client.js"; // ✅ Use default import
+import redis from "./redis-client.js"; // Adjust the path if needed
 
 function getSessionKey(token) {
   return `session:${token}`;

